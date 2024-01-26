@@ -2,9 +2,9 @@ import sys
 
 
 def get_key_by_value(dct, value):
-    for key, value in dct.items():
-        if value == value:
-            return key
+    for k, v in dct.items():
+        if v == value:
+            return k
     return None
 
 
