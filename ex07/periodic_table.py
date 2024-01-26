@@ -31,7 +31,7 @@ def main():
         data = f.read()
     data_lst = data.split("\n")
     dct = create_dct(data_lst)
-    html = "<!DOCTYPE html><html lang='en'><head><title>Periodic Table</title></head><body><table>"
+    html = "<!DOCTYPE html><html lang='en'><head><meta charset='utf-8'><title>Periodic Table</title></head><body><table>"
     for r in range(7):
         row = "<tr>"
         for c in range(18):
