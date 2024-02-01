@@ -20,11 +20,11 @@ def find_state(capital, states, capital_cities):
 
 def find(arg):
     states = {
-        "Oregon" : "OR",
-        "Alabama" : "AL",
+        "Oregon": "OR",
+        "Alabama": "AL",
         "New Jersey": "NJ",
-        "Colorado" : "CO"
-        }
+        "Colorado": "CO"
+    }
     capital_cities = {
         "OR": "Salem",
         "AL": "Montgomery",
@@ -33,7 +33,9 @@ def find(arg):
     }
     arg_lst = [arg.strip() for arg in arg.split(",") if len(arg.strip()) > 0]
     for arg in arg_lst:
-        arg_format = arg.lower().title()
+        arg_format = (" ".join([w for w in arg.split(" ") if len(w) > 0])
+                         .lower()
+                         .title())
         if arg_format in states.keys():
             capital = find_capital(arg_format, states, capital_cities)
             print(f"{capital} is the capital of {arg_format}")

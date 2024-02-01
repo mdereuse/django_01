@@ -10,10 +10,10 @@ def get_key_by_value(dct, value):
 
 def find_state(capital):
     states = {
-        "Oregon" : "OR",
-        "Alabama" : "AL",
+        "Oregon": "OR",
+        "Alabama": "AL",
         "New Jersey": "NJ",
-        "Colorado" : "CO"
+        "Colorado": "CO"
         }
     capital_cities = {
         "OR": "Salem",

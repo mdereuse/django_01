@@ -3,11 +3,11 @@ import sys
 
 def find_capital(state):
     states = {
-        "Oregon" : "OR",
-        "Alabama" : "AL",
+        "Oregon": "OR",
+        "Alabama": "AL",
         "New Jersey": "NJ",
-        "Colorado" : "CO"
-        }
+        "Colorado": "CO"
+    }
     capital_cities = {
         "OR": "Salem",
         "AL": "Montgomery",

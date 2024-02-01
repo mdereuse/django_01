@@ -1,9 +1,6 @@
-import sys
-
-
 def create_dct(data_lst):
     dct = {
-        elem.split(" = ")[0] : {
+        elem.split(" = ")[0]: {
                 info.split(":")[0]: info.split(":")[1]
                 for info in elem.split(" = ")[1].split(", ")
             }
@@ -31,27 +28,51 @@ def main():
         data = f.read()
     data_lst = data.split("\n")
     dct = create_dct(data_lst)
-    html = "<!DOCTYPE html><html lang='en'><head><meta charset='utf-8'><title>Periodic Table</title></head><body><table>"
+    html = """<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <title>Periodic Table</title>
+    </head>
+    <body>
+        <table>
+    """
+    template = """
+                <td style='border: 1px solid black; padding:10px'>
+                    <h4>{elem}</h4>
+                    <ul>
+                        <li>No {number}</li>
+                        <li>{small}</li>
+                        <li>{molar}</li>
+                        <li>{electron} electron(s)</li>
+                    </ul>
+                </td>
+    """
     for r in range(7):
-        row = "<tr>"
+        row = """
+            <tr>"""
         for c in range(18):
             elem, info = find_elem(r, c, dct)
             if elem is not None:
-                cell = "<td style='border: 1px solid black; padding:10px'>"
-                cell += f"<h4>{elem}</h4>"
-                cell += "<ul>"
-                cell += f"<li>No {info['number']}</li>"
-                cell += f"<li>{info['small']}</li>"
-                cell += f"<li>{info['molar']}</li>"
-                cell += f"<li>{len(info['electron'].split(' '))} electron(s)</li>"
-                cell += "</ul>"
-                cell += "</td>"
+                cell = template.format(
+                    elem=elem,
+                    number=info['number'],
+                    small=info['small'],
+                    molar=info['molar'],
+                    electron=len(info['electron'].split(' '))
+                )
             else:
-                cell = "<td></td>"
+                cell = """
+                <td></td>
+                """
             row += cell
-        row += "</tr>"
+        row += """
+            </tr>"""
         html += row
-    html += "</table></body></html>"
+    html += """
+        </table>
+    </body>
+</html>"""
     with open("periodic_table.html", "w") as f:
         f.write(html)
 
